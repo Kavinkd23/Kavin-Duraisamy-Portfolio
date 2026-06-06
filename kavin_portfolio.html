@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavin Duraisamy | Environmental Sustainability Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f0a;
+    --bg2: #0e150e;
+    --bg3: #121a12;
+    --green-deep: #1a3a1a;
+    --green-mid: #2d5a2d;
+    --green-bright: #4a9a4a;
+    --green-accent: #6fcf6f;
+    --green-glow: #8fe88f;
+    --text: #e8f0e8;
+    --text-muted: #9ab09a;
+    --text-dim: #5a7a5a;
+    --gold: #c8a84b;
+    --white: #f0f8f0;
+    --border: rgba(74,154,74,0.2);
+    --border-bright: rgba(111,207,111,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--green-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid var(--green-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,15,10,0.95), transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--green-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--green-accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(26,58,26,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(45,90,45,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(10,20,10,0.8) 0%, transparent 100%);
+  }
+
+  /* Floating particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: var(--green-bright);
+    border-radius: 50%;
+    animation: float linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    border: 1px solid var(--border-bright);
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--white);
+    animation: fadeInUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-name span {
+    color: var(--green-accent);
+    font-style: italic;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    animation: fadeInUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-contact {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-contact a:hover { color: var(--green-accent); }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    animation: fadeInUp 0.8s 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: none;
+    transition: all 0.3s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--green-bright);
+    color: var(--bg);
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--green-glow); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--green-accent);
+    border: 1px solid var(--border-bright);
+  }
+  .btn-ghost:hover { background: rgba(111,207,111,0.1); transform: translateY(-2px); }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeInUp 1s 1.2s ease forwards, bounce 2s 2s ease-in-out infinite;
+    opacity: 0;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--green-accent), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 8rem 4rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    height: 1px;
+    width: 60px;
+    background: var(--border-bright);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+  }
+
+  .about-text strong {
+    color: var(--green-accent);
+    font-weight: 600;
+  }
+
+  .about-stats {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .stat-card:hover {
+    border-color: var(--border-bright);
+    transform: translateX(4px);
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--green-bright);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--green-accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--bg2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    background: var(--bg3);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .skill-category:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-4px);
+  }
+
+  .skill-cat-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(74,154,74,0.1);
+    border: 1px solid rgba(74,154,74,0.25);
+    color: var(--green-bright);
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover {
+    background: rgba(74,154,74,0.2);
+    border-color: var(--green-accent);
+  }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .exp-list::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--green-bright), transparent);
+  }
+
+  .exp-item {
+    padding: 2rem 0 2rem 3rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 2.5rem;
+    width: 9px; height: 9px;
+    background: var(--green-bright);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--green-bright);
+  }
+
+  .exp-date {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--green-accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-org {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .exp-bullets li {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--green-bright);
+  }
+
+  /* PROJECTS */
+  .projects-section { background: var(--bg2); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    background: var(--bg3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .project-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-6px);
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(74,154,74,0.08), transparent 60%);
+    pointer-events: none;
+  }
+
+  .project-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    margin-bottom: 1rem;
+  }
+
+  .project-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    background: var(--bg2);
+    transition: all 0.3s;
+    position: relative;
+  }
+  .edu-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-4px);
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .edu-uni {
+    font-size: 0.7rem;
+    color: var(--green-accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-date {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* PUBLICATIONS */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pub-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    border-left: 3px solid var(--green-bright);
+    transition: all 0.3s;
+  }
+  .pub-item:hover { border-color: var(--border-bright); transform: translateX(4px); }
+
+  .pub-type {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .pub-title {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.6;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* MEMBERSHIPS */
+  .membership-section { background: var(--bg3); }
+
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .membership-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    text-align: center;
+    background: var(--bg2);
+    transition: all 0.3s;
+  }
+  .membership-card:hover {
+    border-color: var(--green-accent);
+    background: rgba(74,154,74,0.08);
+    transform: scale(1.03);
+  }
+
+  .membership-abbr {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--green-accent);
+    display: block;
+  }
+  .membership-name {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* AWARDS */
+  .awards-section { background: var(--bg2); }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .award-card {
+    padding: 1.5rem 2rem;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s;
+  }
+  .award-card:hover {
+    border-color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  .award-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  .award-text {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .award-title {
+    color: var(--white);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--bg);
+    text-align: center;
+  }
+
+  .contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-email {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--green-accent);
+    text-decoration: none;
+    display: inline-block;
+    margin: 2rem 0;
+    transition: color 0.3s;
+    font-style: italic;
+  }
+  .contact-email:hover { color: var(--green-glow); }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+  .contact-link:hover {
+    color: var(--green-accent);
+    border-bottom-color: var(--green-accent);
+  }
+
+  /* Languages bar */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .lang-item {
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg2);
+  }
+  .lang-name { font-size: 0.8rem; color: var(--white); }
+  .lang-level {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--green-accent);
+    background: rgba(74,154,74,0.1);
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-bright), transparent);
+    margin: 0;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KD</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Environmental Sustainability Professional · Edinburgh, UK</div>
+    <h1 class="hero-name">Kavin<br><span>Duraisamy</span></h1>
+    <p class="hero-title">LCA Specialist · ESG Analyst · Net Zero Strategist</p>
+
+    <div class="hero-contact">
+      <a href="mailto:kavin.kd23@gmail.com">✉ kavin.kd23@gmail.com</a>
+      <a href="tel:+447349937997">✆ +44 7349 937997</a>
+      <a href="https://linkedin.com/in/kavindk" target="_blank">⬡ linkedin.com/in/kavindk</a>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="#about" class="btn btn-ghost">View Profile</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="section-title">Turning science<br>into sustainability action</div>
+
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-text">
+        Environmental Sustainability professional with hands-on expertise in <strong>life cycle assessment (LCA)</strong>, embodied carbon modelling, and ESG reporting. My dissertation research applied LCA and Material Flow Analysis to retail supply chains, identifying evidence-based pathways to reduce emissions and strengthen circularity.<br><br>
+        Experienced in <strong>Scope 1–3 carbon accounting</strong>, waste management, and net zero strategy. Co-developer of the Revive app — a waste-to-reward platform — and Decision Committee Member for the <strong>World Register of Marine Species (WoRMS)</strong>. Motivated to help organisations strengthen ESG performance, meet regulatory requirements, and transition toward low-carbon, climate-resilient systems.
+      </p>
+      <div class="lang-grid" style="margin-top: 2rem;">
+        <div class="lang-item"><span class="lang-name">Tamil</span><span class="lang-level">C2 Native</span></div>
+        <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">C2 Fluent</span></div>
+        <div class="lang-item"><span class="lang-name">Malayalam</span><span class="lang-level">C2 Fluent</span></div>
+        <div class="lang-item"><span class="lang-name">Hindi</span><span class="lang-level">C1 Advanced</span></div>
+      </div>
+    </div>
+
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <div class="stat-number">24+</div>
+        <div class="stat-label">Grants, Publications & Recognitions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Professional Memberships (CIEEM, CIWM, IUCN-WCPA)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years Environmental Research Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Conference Posters & Publications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MEMBERSHIPS -->
+<section class="membership-section" id="memberships">
+  <div class="section-label">Professional Memberships</div>
+  <div class="membership-grid reveal">
+    <div class="membership-card">
+      <span class="membership-abbr">CIEEM</span>
+      <span class="membership-name">Chartered Institute of Ecology & Environmental Management</span>
+    </div>
+    <div class="membership-card">
+      <span class="membership-abbr">CIWM</span>
+      <span class="membership-name">Chartered Institution of Wastes Management</span>
+    </div>
+    <div class="membership-card">
+      <span class="membership-abbr">IUCN</span>
+      <span class="membership-name">IUCN World Commission on Protected Areas</span>
+    </div>
+    <div class="membership-card">
+      <span class="membership-abbr">WoRMS</span>
+      <span class="membership-name">World Register of Marine Species — Decision Committee</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-label">Technical Expertise</div>
+  <div class="section-title">Skills &<br>Frameworks</div>
+
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">LCA & Carbon</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SimaPro</span>
+        <span class="skill-tag">OpenLCA</span>
+        <span class="skill-tag">One Click LCA</span>
+        <span class="skill-tag">Embodied Carbon</span>
+        <span class="skill-tag">Whole Life Carbon</span>
+        <span class="skill-tag">EPDs</span>
+        <span class="skill-tag">Material Flow Analysis</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">ESG & Reporting Frameworks</div>
+      <div class="skill-tags">
+        <span class="skill-tag">GHG Protocol</span>
+        <span class="skill-tag">SBTi</span>
+        <span class="skill-tag">TCFD</span>
+        <span class="skill-tag">ISO 14001</span>
+        <span class="skill-tag">ISO 14064</span>
+        <span class="skill-tag">Scope 1–3</span>
+        <span class="skill-tag">TNFD</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Built Environment</div>
+      <div class="skill-tags">
+        <span class="skill-tag">BREEAM</span>
+        <span class="skill-tag">LETI</span>
+        <span class="skill-tag">RICS</span>
+        <span class="skill-tag">PAS 2080</span>
+        <span class="skill-tag">Passivhaus</span>
+        <span class="skill-tag">Retrofit Assessment</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Data & GIS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ArcGIS</span>
+        <span class="skill-tag">QGIS</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">R Studio</span>
+        <span class="skill-tag">Excel</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Environmental Practice</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Biodiversity Net Gain</span>
+        <span class="skill-tag">Circular Economy</span>
+        <span class="skill-tag">Waste Minimisation</span>
+        <span class="skill-tag">Supply Chain Sustainability</span>
+        <span class="skill-tag">Environmental Monitoring</span>
+        <span class="skill-tag">EIA</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Stakeholder Engagement</span>
+        <span class="skill-tag">Science Communication</span>
+        <span class="skill-tag">Project Management</span>
+        <span class="skill-tag">Just Transition</span>
+        <span class="skill-tag">Social Value</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work Experience</div>
+  <div class="section-title">Professional<br>Journey</div>
+
+  <div class="exp-list reveal">
+    <div class="exp-item">
+      <div class="exp-date">Jul – Aug 2025</div>
+      <div class="exp-title">Sustainable Construction Intern</div>
+      <div class="exp-org">Green Building Solutions Summer School · Vienna, Austria</div>
+      <ul class="exp-bullets">
+        <li>Trained in sustainable construction, renewable energy systems, and circular economy principles.</li>
+        <li>Worked with international peers to design carbon-neutral communities using Passivhaus standards.</li>
+        <li>Gained hands-on experience with low-carbon construction and European sustainability standards.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Nov 2023 – Jun 2024</div>
+      <div class="exp-title">Scientific Assistant</div>
+      <div class="exp-org">Sathyabama Institute of Science and Technology · India</div>
+      <ul class="exp-bullets">
+        <li>Conducted environmental research including microplastics analysis and freshwater biodiversity assessments.</li>
+        <li>Contributed to peer-reviewed publications, conference posters, and national environmental monitoring reports.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Ongoing</div>
+      <div class="exp-title">Decision Committee Member</div>
+      <div class="exp-org">World Register of Marine Species (WoRMS)</div>
+      <ul class="exp-bullets">
+        <li>Contributing to taxonomic decisions and governance of the internationally recognised authoritative reference list of marine species names.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-label">Projects & Competitions</div>
+  <div class="section-title">Impact<br>Work</div>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-icon">🏆</div>
+      <div class="project-title">Uniforce Challenge</div>
+      <div class="project-role">Sustainable Impact Finalist · Project Lead · Oct 2025 – Jan 2026</div>
+      <p class="project-desc">Awarded for outstanding contribution to sustainable impact through innovative environmental solutions across a 12-week competitive programme.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">♻️</div>
+      <div class="project-title">Revive App</div>
+      <div class="project-role">Co-Developer · Ongoing</div>
+      <p class="project-desc">Waste-to-reward mobile platform designed to incentivise sustainable behaviour and improve recycling outcomes at scale.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🌍</div>
+      <div class="project-title">Social Innovation Challenge</div>
+      <div class="project-role">Project Manager · Scotland · Ongoing</div>
+      <p class="project-desc">Developing scalable sustainability solutions for communities across Scotland through an 8-week structured innovation programme.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">⚡</div>
+      <div class="project-title">Sprint Event</div>
+      <div class="project-role">Participant · Heriot-Watt University</div>
+      <p class="project-desc">Rapid innovation sprint applying sustainability thinking to real-world challenges in a competitive team environment.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🛒</div>
+      <div class="project-title">Insights for Sustainability 2045</div>
+      <div class="project-role">MSc Dissertation · Edinburgh Napier University</div>
+      <p class="project-desc">LCA & Material Flow Analysis applied to grocery retail supply chains, identifying pathways to reduce emissions and strengthen circularity toward 2045 targets.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🐟</div>
+      <div class="project-title">River Moyar Fish Diversity Study</div>
+      <div class="project-role">MSc Dissertation · Bharathiar University</div>
+      <p class="project-desc">Fish diversity, habitat quality assessment and GIS mapping of River Moyar, Western Ghats — foundational ecological research contributing to regional conservation.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <div class="section-title">Academic<br>Background</div>
+
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">M.Sc. Environmental Sustainability</div>
+      <div class="edu-uni">Edinburgh Napier University · Scotland, UK</div>
+      <div class="edu-date">Jan 2025 – May 2026</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">Certificate in Environmental Impact Assessment</div>
+      <div class="edu-uni">IIT Roorkee · India</div>
+      <div class="edu-date">Jan – Apr 2024 · 75%</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">PG Diploma in Biodiversity and Conservation</div>
+      <div class="edu-uni">Kongu Nadu Arts and Science College · India</div>
+      <div class="edu-date">September 2021</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">M.Sc. Environmental Science</div>
+      <div class="edu-uni">Bharathiar University · India</div>
+      <div class="edu-date">2017 – 2019 · First Class, 7.6 CGPA</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PUBLICATIONS -->
+<section id="publications" style="background: var(--bg2);">
+  <div class="section-label">Research & Publications</div>
+  <div class="section-title">Knowledge<br>Contributions</div>
+
+  <div class="pub-list reveal">
+    <div class="pub-item">
+      <div class="pub-type">International Book Chapter</div>
+      <div class="pub-title">Dinesh K, Geeji Madathil & Kavin Duraisamy — Mullet Culture in India: Present Status and Future Prospects. Eds. Ichiu Liao & Eduardo Leano.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Conference Poster · 2024</div>
+      <div class="pub-title">Microplastics in Fish — Implications for Human Consumption. Kavin D & Prakash S. SIST-Spinco Biotech, August 2024.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Conference Poster · 2024</div>
+      <div class="pub-title">Bridging Traditions and Ecology: Cultural Community Conservation of Freshwater Fishes.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Conference Poster · 2023</div>
+      <div class="pub-title">Understanding Fishing Practices of Indigenous Communities, Arunachal Pradesh.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Conference Poster · 2023</div>
+      <div class="pub-title">Monitoring Freshwater Fish Population in Moyar River — Long-Term Ecological Observatory.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Conference Poster · 2023</div>
+      <div class="pub-title">Ecohydrological Assessment of Ranganadi River, Arunachal Pradesh.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Contributing Author · Report · 2022</div>
+      <div class="pub-title">NRCD-WII. Barak, Narmada, Periyar, Cauvery, Mahanadi & Godavari Riverscape: Ecological Status and Trends. Wildlife Institute of India.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Contributing Author · Report · 2021</div>
+      <div class="pub-title">Johnson et al. Status of Wildlife between Kota Barrage & Jawahar Sagar Dam. Wildlife Institute of India. Rapid Assessment Report 4.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AWARDS -->
+<section class="awards-section" id="awards">
+  <div class="section-label">Awards & Recognition</div>
+  <div class="section-title">Achievements</div>
+
+  <div class="awards-grid reveal">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-text">
+        <span class="award-title">Uniforce Award — Sustainable Impact</span>
+        Outstanding contribution across 12-week competitive sustainability programme
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🎓</div>
+      <div class="award-text">
+        <span class="award-title">NCBS Carbon Summer School Grant</span>
+        Fully funded — National Centre for Biological Sciences, 2022
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">⭐</div>
+      <div class="award-text">
+        <span class="award-title">24 Grants, Publications & Recognitions</span>
+        Across research, conservation, and sustainability domains
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-content">
+    <div class="section-label" style="justify-content: center;">Contact</div>
+    <div class="section-title" style="text-align: center;">Let's work<br><em style="font-family: Playfair Display; color: var(--green-accent);">together</em></div>
+    <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; font-family: Fraunces, serif;">
+      Open to sustainability consultancy roles, ESG analyst positions, and collaborations in LCA, net zero strategy, and environmental research. Based in Edinburgh — available UK-wide.
+    </p>
+    <a href="mailto:kavin.kd23@gmail.com" class="contact-email">kavin.kd23@gmail.com</a>
+
+    <div class="contact-links">
+      <a href="tel:+447349937997" class="contact-link">+44 7349 937997</a>
+      <a href="https://linkedin.com/in/kavindk" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="mailto:kavin.kd23@gmail.com" class="contact-link">Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Kavin Duraisamy</span>
+  <span>Edinburgh, Scotland · Environmental Sustainability Professional</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX - 4 + 'px';
+    cursor.style.top = mouseY - 4 + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX - 16) * 0.12;
+    ringY += (mouseY - ringY - 16) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      ring.style.transform = 'scale(1.5)';
+      ring.style.opacity = '0.8';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.transform = 'scale(1)';
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    container.appendChild(p);
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
